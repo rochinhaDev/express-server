@@ -1,5 +1,6 @@
 // models/user.model.js
 import mongoose from "mongoose";
+import notesRouter from "../routes/note.routes.js";
 
 // o _id é criado automaticamente
 
@@ -40,9 +41,11 @@ const userSchema = new mongoose.Schema(
     },
     recipes: [
       {
-        type: mongoose.Schema.Types.ObjectId, ref: "Recipe",
-      }
-    ]
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Recipe",
+      },
+    ],
+    notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Note" }],
   },
   {
     timestamps: true, // cria as chaves updatedAt e createUp automáticamente

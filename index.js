@@ -6,6 +6,7 @@ import cors from "cors";
 // routes //
 import userRouter from "./routes/user.routes.js";
 import recipeRouter from "./routes/recipe.routes.js";
+import noteRouter from "./routes/note.routes.js";
 
 //criar o servidor
 const app = express();
@@ -25,6 +26,7 @@ connectDB();
 //rotas para tabelas diferentes
 app.use("/user", userRouter);
 app.use("/recipe", recipeRouter);
+app.use("/note", noteRouter);
 
 // colocar o servidor no ar
 app.listen(4000, () => {

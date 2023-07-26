@@ -1,7 +1,6 @@
 import express from "express";
 import RecipeModel from "../models/recipe.model.js";
 import userModel from "../models/user.model.js";
-
 const router = express.Router();
 router.post("/create/:id_user", async (req, res) => {
   try {
@@ -39,20 +38,15 @@ router.get("/all", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   try {
     const id_recipe = req.params.id;
-
     const data = req.body;
-
     const config = { new: true, runValidators: true };
-
     const recipe = await RecipeModel.findByIdAndUpdate(id_recipe, data, config);
-
     return res.status(200).json(recipe);
   } catch (error) {
     console.log(error);
     return res.status(500).json(error);
   }
 });
-
 //soft delete
 router.delete("/delete-soft/:id", async (req, res) => {
   try {
@@ -68,7 +62,6 @@ router.delete("/delete-soft/:id", async (req, res) => {
     return res.status(500).json(error);
   }
 });
-
 //hard delete
 router.delete("/delete/:id", async (req, res) => {
   try {
@@ -94,9 +87,7 @@ router.get("/get/dessert", async (req, res) => {
 router.get("/:id_recipe", async (req, res) => {
   try {
     const id_recipe = req.params.id_recipe;
-
     const oneRecipe = await RecipeModel.findById(id_recipe).populate("creator");
-
     return res.status(200).json(oneRecipe);
   } catch (error) {
     console.log(console.error);

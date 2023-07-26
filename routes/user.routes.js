@@ -29,7 +29,9 @@ router.get("/:id_user", async (req, res) => {
   try {
     const id_user = req.params.id_user;
     console.log(id_user);
-    const one_user = await UserModel.findById(id_user).populate("recipes");
+    const one_user = await UserModel.findById(id_user)
+      .populate("recipes")
+      .populate("notes");
 
     return res.status(200).json(one_user);
   } catch (error) {
